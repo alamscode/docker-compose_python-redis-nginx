@@ -1,0 +1,18 @@
+version: '2'
+services:
+    web:
+        build: .
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/code
+        depends_on:
+            - redis
+    redis:
+        image: redis
+    nginx:
+        image: nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - ./index.html:/usr/share/nginx/html/index.html
